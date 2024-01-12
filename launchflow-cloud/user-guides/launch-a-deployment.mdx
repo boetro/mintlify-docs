@@ -1,0 +1,147 @@
+---
+title: Launch a Deployment
+description: "Create and manage deployments"
+---
+
+## Launch a Deployment
+
+Creating a deployment is as simple as clicking the `Launch Deployment` button in the VS Code extension, or by using the `launch deploy` command in the CLI. Once your deployment is launched it will be assigned a unique ID that you can use to manage it.
+
+<Tip>
+  When launching a deployment you must specify what project and optionally an environment to launch the deployment in.
+</Tip>
+
+<Tabs>
+  <Tab title="VS Code Extension">
+    <div className="grid sm:grid-cols-2 space-x-2">
+      <div>
+        <ol>
+            <li>Navigate to the <code>Apps</code> tab</li>
+            <li>Select the application you want to deploy</li>
+            <li>Click <code>Launch Deployment</code></li>
+            <li>Select the environment you would like to deploy to</li>
+            <li>Once running you can navigate to the `Services` tab to visit the URL assigned to your deployment</li>
+
+        </ol>
+        <Note>
+          For new deployments (not updates) it may take a couple minutes for the DNS entry to propagate.
+        </Note>
+        <Tip>
+          If you are deploying to an environment you will need to provide the <code>deployment_key</code> for that environment. If you did not save it locally.
+        </Tip>
+      </div>
+      <div>
+      <Frame className="tailwind styles sm:hidden">
+          <img style={{maxHeight: "500px", margin: 0}} alt="Launch Deployment" src="https://storage.googleapis.com/launchflow-public-images/launch-cropped.gif"/>
+      </Frame>
+      </div>
+    </div>
+  </Tab>
+  <Tab title="CLI">
+    Use the [deployment submit](/developer-tools/cli/reference/deployments#submit) command from the root directory of your project to create a new deployment.
+
+    <Tip>
+      You can use the `--project` and `--environment` flags to specify what project and environment to launch the deployment in.
+    </Tip>
+
+    ```
+    launch deploy
+    ```
+
+    Once this command finishes it will output the deployment ID that you can use to manage your deployment.
+
+    <Tip>
+      If you are deploying to an environment you will need to provide the <code>deployment_key</code> for that environment via the <code>--dkey</code> flag.
+    </Tip>
+  </Tab>
+</Tabs>
+
+## Manage a Deployment
+
+Once your deployment is running you can shut it down any time by draining or stopping it. Draining your application will ensure all current traffic is handled before shutting down the deployment. Stopping your deployment will immediately shut down all running instances.
+
+<Tabs>
+  <Tab title="VS Code Extension">
+    <div className="grid sm:grid-cols-2 space-x-2">
+      <div>
+      <ol>
+          <li>Navigate to the <code>Launches</code> tab</li>
+          <li>Select your running Deployment</li>
+          <li>Click <code>Drain Launch</code> or <code>Stop Launch</code></li>
+      </ol>
+      <Note>
+          Once created you can copy the <code>deployment_key</code> and save it somewhere securly. You can also optionally save it securely in VS Code SecretStore locally by confirming the popup. 
+      </Note>
+      </div>
+      <div>
+      <Frame className="tailwind styles sm:hidden">
+          <img style={{maxHeight: "500px", margin: 0}} alt="Stop Deployment" src="/images/stop-deployment.png"/>
+      </Frame>
+      </div>
+    </div>
+  </Tab>
+  <Tab title="CLI">
+
+    Use the [deployment drain](/developer-tools/cli/reference/deployments#drain) command to drain your deployment.
+
+    ```
+    launch deployments drain $DEPLOYMENT_ID
+    ```
+
+
+    Use the [deployment stop](/developer-tools/cli/reference/deployments#stop) command to stop your deployment.
+
+    ```
+    launch deployments stop $DEPLOYMENT_ID
+    ```
+  </Tab>
+</Tabs>
+
+## Promote A Deployment
+
+If a deployment is running in an environment you can easily promote it to another environment. This will take the code that is running in the source environment and deploy it in the target environment. If a deployment is running in your target environment it will be updated; otherwise a new deployment will be launched in the target environment. This can be useful for release pipelines like promoting from `dev` to `prod`.
+
+<Tabs>
+  <Tab title="VS Code Extension">
+    <div className="grid sm:grid-cols-2 space-x-2">
+      <div>
+        <ol>
+            <li>Navigate to the <code>Launches</code> tab</li>
+            <li>Select a deployment running in an environment you want to promote</li>
+            <li>Click <code>Promote to Environment</code></li>
+            <li>Select the environment you would like to promote to</li>
+            <li>Provide the deployment key for the environment you are promoting to (if not saved locally)</li>
+            <li>Once running you can navigate to the `Services` tab to visit the URL assigned to your deployment</li>
+        </ol>
+      </div>
+      <div>
+      <Frame className="tailwind styles sm:hidden">
+          <img style={{maxHeight: "500px", margin: 0}} alt="Promote Deployment" src="/images/promote.png"/>
+      </Frame>
+      </div>
+    </div>
+  </Tab>
+  <Tab title="CLI">
+    Use the [deployment promote-environment](/developer-tools/cli/reference/deployments#promote-environment) to promote a deployment between environments.
+
+    ```
+    launch deployments promote-environment \
+        --project-id=$PROJECT_ID \
+        --from=$FROM_ENVIRONMENT \
+        --to=$TO_ENVIRONMENT \
+        --dkey=$DEPLOYMENT_KEY
+    ```
+
+    <Note>
+      `--dkey` should be the deployment key for the environment you are promoting to.
+    </Note>
+
+  </Tab>
+</Tabs>
+
+## What's next?
+
+- [Monitor your deployment](/launchflow-cloud/user-guides/monitor-a-deployment)
+- [Update your deployment](/launchflow-cloud/user-guides/update-a-deployment)
+- [Setup a release pipeline](/launchflow-cloud/user-guides/setup-a-release-pipeline) to deploy your application across environments
+- [Use a custom domain](/launchflow-cloud/user-guides/custom-domain) for your application

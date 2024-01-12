@@ -1,0 +1,71 @@
+---
+title: Concepts
+description: "Important concepts and terminology used throughout LaunchFlow"
+---
+
+LaunchFlow has four main components to understand. Accounts, Projects, Environments, and Deployments. These components are hierarchical in nature. An account can have many projects, a project can have many environments or deployments, and an environment can have many deployments.
+
+<img className="block dark:hidden" src="/images/launchflow-resource-hierarchy-light.png" />
+<img className="hidden dark:block" src="/images/launchflow-resource-hierarchy-dark.png" />
+
+
+|            |                                                                                                                                   |
+|------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| **Account**    | An account is the top level resource in LaunchFlow. When you first sign up for LaunchFlow an account will be created for you.     |
+| **Project**    | A project is a container for your environments and deployments. In general you should have one project per buildflow application.                    |
+| **Environment**    | An environment allows a deployment to be run with a specific saved configuration, an environment can only have one running deployment at a time.                |
+| **Deployment** | A Deployment is an instance of a BuildFlow application running inside of LaunchFlow Cloud. Depoyments can be launched in a project if there is no configuration or in an environment. |
+
+## Accounts
+
+An account is the top level resource in LaunchFlow. When you first sign up for LaunchFlow an account will be created for you. 
+All billing information is tied to your account; all of the usage from your [deployments](#deployments) will be billed to your account.
+
+Inside of an account you can see:
+- Your total usage for the month (CPU and $$)
+- A list of projects that are contained in the account  
+
+<Note>
+    In the near future we will allow sharing accounts with users, and creating multiple accounts.
+</Note>
+
+## Projects
+
+Projects can be created inside of an account. We recommend creating one project per BuildFlow application. When launching a deployment you must specify which project you want to launch the deployment in. For more details see our [guide on creating and managing projects](/launchflow-cloud/user-guides/projects).
+
+Inside of a project you can see:
+- A history of all deployments for the project
+- Configured environment in the project
+
+<Note>
+    In the near future we will allow sharing projects with users.
+</Note>
+
+## Environments
+
+Environments allow you to save a configuration for running your deployment. You do this by creating an environment and configuring it with environment variables that will be set when a deployment is launched in the environment. For more details see our [guide on creating and managing environments](/launchflow-cloud/user-guides/environments).
+
+Inside of an environment you can see:
+- A history of all deployments for the environment
+- Configured environment variables for the environment
+- The currently running deployment for the environment
+- The deployment key that is used for authentication with the environment
+
+<Note>
+In the near future we will allow sharing environments with users.
+</Note>
+
+## Deployments
+
+A deployment is created when you launch your BuildFlow application on LaunchFlow cloud.
+
+Inside of a deployment you can see:
+- Status of the deployment (running, stopped, etc)
+- Project the deployment is in
+- Environment the deployment is in
+- Logs for the deployment
+- Metrics for the deployment
+- Previously updated deployments
+- The URL that is serving your application
+    - This will be a URL ending in `launchflow.app`
+    - If you update a deployment it will be deployed to this same URL.

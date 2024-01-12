@@ -1,78 +1,116 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Starter Kit",
+  "name": "LaunchFlow",
   "logo": {
-    "dark": "/logo/dark.svg",
-    "light": "/logo/light.svg"
+    "dark": "/logo/launchflow-docs-logo-dark.png",
+    "light": "/logo/launchflow-docs-logo-light.png"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/favicon.png",
   "colors": {
-    "primary": "#0D9373",
-    "light": "#07C983",
-    "dark": "#0D9373",
+    "primary": "#932aff",
+    "light": "#3789ff",
+    "dark": "#932aff",
+    "background": {
+      "dark": "#1b1b1d"
+    },
     "anchors": {
-      "from": "#0D9373",
-      "to": "#07C983"
+      "from": "#932aff",
+      "to": "#3789ff"
     }
   },
-  "topbarLinks": [
-    {
-      "name": "Support",
-      "url": "mailto:hi@mintlify.com"
-    }
-  ],
+  "modeToggle": {
+    "default": "dark"
+  },
   "topbarCtaButton": {
-    "name": "Dashboard",
-    "url": "https://dashboard.mintlify.com"
+    "type": "link",
+    "url": "https://launchflow.com/signup",
+    "name": "Sign Up"
   },
-  "tabs": [
-    {
-      "name": "API Reference",
-      "url": "api-reference"
+  "primaryTab": {
+    "name": "Home"
+  },
+  "analytics": {
+    "posthog": {
+      "apiKey": "phc_Df3dveOW6gG1ERjM1TQ8qBp7BRwEvLCjiB2FPUJPSwj"
     }
-  ],
+  },
   "anchors": [
     {
-      "name": "Documentation",
-      "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
+      "name": "LaunchFlow",
+      "icon": "rocket-launch",
+      "url": "https://launchflow.com"
     },
     {
       "name": "Community",
       "icon": "slack",
-      "url": "https://mintlify.com/community"
-    },
-    {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
+      "url": "https://join.slack.com/t/launchflowusers/shared_invite/zt-280e6a5ck-zfCrKbqw5w89L~0Xl55G4w"
     }
   ],
   "navigation": [
     {
-      "group": "Get Started",
-      "pages": ["introduction", "quickstart", "development"]
-    },
-    {
-      "group": "Essentials",
-      "pages": ["essentials/markdown", "essentials/code", "essentials/images", "essentials/settings", "essentials/navigation"]
-    },
-    {
-      "group": "API Documentation",
-      "pages": ["api-reference/introduction"]
-    },
-    {
-      "group": "Endpoint Examples",
+      "group": "",
       "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
+        "home",
+        "platform-quickstart"
+      ]
+    },
+    {
+      "group": "LaunchFlow Cloud",
+      "pages": [
+        "launchflow-cloud/introduction",
+        "launchflow-cloud/concepts",
+        "launchflow-cloud/frequently-asked-questions",
+        "launchflow-cloud/subscription-billing",
+        "launchflow-cloud/machine-types"
+      ]
+    },
+    {
+      "group": "User Guides",
+      "pages": [
+        "launchflow-cloud/user-guides/projects",
+        "launchflow-cloud/user-guides/environments",
+        "launchflow-cloud/user-guides/launch-a-deployment",
+        "launchflow-cloud/user-guides/monitor-a-deployment",
+        "launchflow-cloud/user-guides/setup-a-release-pipeline",
+        "launchflow-cloud/user-guides/update-a-deployment",
+        "launchflow-cloud/user-guides/custom-domain",
+        "launchflow-cloud/user-guides/user-provided-credentials"
+      ]
+    },
+    {
+      "group": "VS Code Extension",
+      "pages": [
+        "developer-tools/vs-code-extension/getting-started"
+      ]
+    },
+    {
+      "group": "CLI",
+      "pages": [
+        "developer-tools/cli/getting-started",
+        {
+          "group": "Reference",
+          "pages": [
+            "developer-tools/cli/reference/accounts",
+            "developer-tools/cli/reference/auth",
+            "developer-tools/cli/reference/config",
+            "developer-tools/cli/reference/deployments",
+            "developer-tools/cli/reference/environments",
+            "developer-tools/cli/reference/projects"
+          ]
+        }
       ]
     }
   ],
   "footerSocials": {
-    "twitter": "https://twitter.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://www.linkedin.com/company/mintsearch"
-  }
+    "website": "https://launchflow.com",
+    "slack": "https://join.slack.com/t/launchflowusers/shared_invite/zt-280e6a5ck-zfCrKbqw5w89L~0Xl55G4w",
+    "linkedin": "https://www.linkedin.com/company/launchflow-inc",
+    "twitter": "https://twitter.com/Launch_Flow"
+  },
+  "redirects": [
+    {
+      "source": "/platform-quickstart",
+      "destination": "/platform/platform-quickstart"
+    }
+  ]
 }

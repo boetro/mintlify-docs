@@ -1,0 +1,151 @@
+---
+title: Getting Started
+---
+
+## Install BuildFlow
+
+To get started you will first need to install **BuildFlow**. **BuildFlow** is a Python framework that allows you to build your entire backend application.
+
+```
+pip install buildflow
+``` 
+
+## Create Your first Application
+
+First create a directory to house your application. Then you can create a new simple application by running:
+
+```
+buildflow init
+```
+
+This will prompt you to name your application and create all the necessary files.
+
+## Run your Application Locally
+
+The application you created can be run with zero changes. Running it will start a local HTTP server that you can visit at http://localhost:8000. To run your application locally run:
+
+```
+buildflow run
+```
+
+## Debug your Application Locally
+
+Once your application is running you can visit http://localhost:8000 to view it. You can also view the openapi docs for it at http://localhost:8000/docs.
+
+
+## Install LaunchFlow CLI
+
+To get started with LaunchFlow cloud you will need to install the LaunchFlow CLI. This is available as a Python package.
+
+```
+pip install launchflow
+```
+
+## Create an Account
+
+To create an account you can run:
+
+```
+launch auth login
+```
+
+This will prompt you to login with your Google or GitHub account, and we will create a LaunchFlow cloud account for you and output the details of the account.
+
+<Tip>
+    You can run the following to avoid having to provide your account ID for future commands:
+
+    ```
+    launch config set-default-account $ACCOUNT_ID
+    ```
+</Tip>
+
+Once you've signed up you can view details about your account with:
+
+```
+launch accounts list
+```
+
+## Upgrade your Account
+
+In order you launch a remote deployment you will need to upgrade your account to our [standard tier](https://www.launchflow.com/pricing). You can do this by running:
+
+```
+launch account upgrade
+```
+
+This will generate a URL that you can follow to complete the upgrade process, and you account will be credited with $50 of free credit.
+
+## Deploy your Application Remotely
+
+To deploy your application to the cloud you will first need to [create a project](/launchflow-cloud/user-guides/projects#creating-a-project) that the deployment runs in. Your project name must contain only numbers, letters (lower or upper case), hypens (-), and be less than 64 characters.
+
+```
+launch projects create PROJECT_DISPLAY_NAME
+```
+
+<Tip>
+    If you plan to use this as your main / default project you can run:
+
+    ```
+    launch config set-default-project $PROJECT_ID
+    ```
+
+    And all future commands will use this project by default.
+</Tip>
+
+You can list your projects at anytime with:
+
+```
+launch projects list
+```
+
+Once your project is created you can deploy your application by running in the root directory of your application:
+
+```
+launch deploy
+```
+
+This command will complete once your deployment is launched and output additional commands you can use to monitor your deployment. Note the deployment ID (`deployment_XXXXXXXX`)that is output, you will need this to debug your deployment.
+
+## Debug your Remote Application
+
+You can check the status of your deployment at anytime by running:
+
+```
+launch deployments ping $DEPLOYMENT_ID
+```
+
+This will output the status of your deployment, health metrics, and additional metadata such as the URL that was assigned to your deployment. You can visit that at anytime to view your application.
+
+<Tip>
+You add `/docs` to the URL to view the openapi documentation for your application.
+</Tip>
+
+You can view the logs for your deployment by running:
+
+```
+launch deployments logs $DEPLOYMENT_ID
+```
+
+<Tip>
+Whether your deployment is running or stopped you can always run `ping` and `logs` to access historical data.
+</Tip>
+
+## Stop your Deployment
+You can stop your deployment at any time by running the `drain` or `stop` commands. Drain will turn off traffic and let all current traffic finish before shutting down. Stop will immediately shut down your deployment.
+
+```
+launch deployments drain $DEPLOYMENT_ID
+```
+
+```
+launch deployments stop $DEPLOYMENT_ID
+```
+
+## What's Next?
+
+- Learn about additional [BuildFlow features](/buildflow/)
+- Learn about additional [LaunchFlow cloud features](/launchflow-cloud/)
+- Create and Deploy your Application across [multiple environments](/launchflow-cloud/user-guides/environments)
+- Push new versions of your application with [zero downtime](/launchflow-cloud/user-guides/update-a-deployment)
+- Set up a [fully automated CI/CD pipeline](/launchflow-cloud/user-guides/setup-a-release-pipeline)

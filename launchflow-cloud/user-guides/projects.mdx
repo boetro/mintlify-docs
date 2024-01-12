@@ -1,0 +1,127 @@
+---
+title: Projects
+description: "Create and manage projects"
+---
+
+A project is a container for your environments and deployments. One acocunt can have any number of projects. We recommend creating one project per BuildFlow application. When launching a deployment you must specify which project you want to launch the deployment in.
+
+
+## Creating a Project
+
+To a create a project you will need to specify a display name for the project. This name must contain only numbers, letters (lower or upper case), hypens (`-`), and be less than 64 characters.
+
+
+<Tabs>
+  <Tab title="VS Code Extension">
+    <div className="grid sm:grid-cols-2">
+      <div>
+      <ol>
+          <li>Navigate to the <code>Projects</code> tab</li>
+          <li>Click <code>Create New Project</code></li>
+          <li>Enter a display name for the project</li>
+          <li>Click enter</li>
+      </ol>
+      </div>
+      <div>
+      <Frame className="tailwind styles sm:hidden">
+          <img style={{maxHeight: "500px", margin: 0}} alt="Create Project" src="/images/create-project.png"/>
+      </Frame>
+      </div>
+    </div>
+  </Tab>
+  <Tab title="CLI">
+    Use the [project create](/developer-tools/cli/reference/projects#create) command to create a project.
+
+    ```
+    launch projects create $PROJECT_DISPLAY_NAME
+    ```
+
+    Once this command finishes it will output the project ID that you can use to manage your project.
+
+    <Tip>
+        If you plan to use this as your main / default project you can run:
+
+        ```
+        launch config set-default-project $PROJECT_ID
+        ```
+
+        And all future commands will use this project by default.
+    </Tip>
+  </Tab>
+</Tabs>
+
+## Managing a Project
+
+### Rename a Project
+
+At any time you can rename a project. The name must conform the requirements above.
+
+<Tabs>
+  <Tab title="VS Code Extension">
+<div className="grid sm:grid-cols-2">
+  <div>
+  <ol>
+      <li>Navigate to the <code>Projects</code> tab</li>
+      <li>Select a project by clicking on the name</li>
+      <li>Click <code>Rename Project</code></li>
+      <li>Enter a new display name for the project</li>
+      <li>Click enter</li>
+   </ol>
+   </div>
+  <div>
+   <Frame className="tailwind styles sm:hidden">
+      <img style={{maxHeight: "500px", margin: 0}} alt="Rename project" src="/images/project-screen.png"/>
+   </Frame>
+   </div>
+</div>
+  </Tab>
+  <Tab title="CLI">
+    Use the [project create](/developer-tools/cli/reference/projects#update) command to update a project. The `--display-name` flag should take in the new name of the project.
+
+    ```
+    launch projects update --display-name$PROJECT_DISPLAY_NAME
+    ```
+  </Tab>
+</Tabs>
+
+
+### Deleting a Project
+
+Deleting a project will delete all environments and deployments in the project. A project can only be deleted if there are no running deployments in the project.
+
+<Warning>
+    This action cannot be undone.
+</Warning>
+
+<Tabs>
+  <Tab title="VS Code Extension">
+<div className="grid sm:grid-cols-2">
+  <div>
+  <ol>
+      <li>Navigate to the <code>Projects</code> tab</li>
+      <li>Select a project by clicking on the name</li>
+      <li>Click <code>Delete Project</code></li>
+      <li>Confirm the deletion</li>
+   </ol>
+   </div>
+  <div>
+   <Frame className="tailwind styles sm:hidden">
+      <img style={{maxHeight: "500px", margin: 0}} alt="Delete project" src="/images/project-screen.png"/>
+   </Frame>
+   </div>
+</div>
+  </Tab>
+  <Tab title="CLI">
+    Use the [project delete](/developer-tools/cli/reference/projects#delete) command to delete a project.
+
+    ```
+    launch projects delete $PROJECT_ID
+    ```
+  </Tab>
+</Tabs>
+
+
+## What's next?
+
+- [Create an environment](/launchflow-cloud/user-guides/environments) in your projects
+- [Launch a deployment](/launchflow-cloud/user-guides/environments) in your project

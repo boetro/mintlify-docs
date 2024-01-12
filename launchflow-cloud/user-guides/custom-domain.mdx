@@ -1,0 +1,50 @@
+---
+title: Serve from a Custom Domain
+---
+
+To serve from a custom domain you can add a `CNAME` record to your DNS settings. This `CNAME` record should point to the url of you deployment.
+
+<Tip>
+    This URL will stay the same across updates to your deployment. See our [update guide](/launchflow-cloud/user-guides/update-a-deployment) for more information.
+</Tip>
+
+| Host Name            | Type  | Data                                                      |
+|----------------------|-------|-----------------------------------------------------------|
+| \<HOST NAME TO MAP\> | CNAME | https://\<PROJECT_ID\>-\<DEPLOYMENT_ID\|ENV_NAME\>.launchflow.app |
+
+You can find the URL of your deployment in the VS Code extension when attaching to a deployment, or by running the `launch deployments ping` command.
+
+<Tabs>
+  <Tab title="VS Code Extension">
+    <div className="grid sm:grid-cols-2 space-x-2">
+      <div>
+        <ol>
+          <li>Navigate to the <code>Launches Page</code></li>
+          <li>Click a running deployment</li>
+          <li>Click the <code>Services</code> tab to see the URL assigned to your deployment</li>
+        </ol>
+      </div>
+      <div>
+      <Frame className="tailwind styles sm:hidden">
+          <img style={{maxHeight: "500px", margin: 0}} alt="Deployment URL" src="/images/services.png"/>
+      </Frame>
+      </div>
+    </div>
+  </Tab>
+  <Tab title="CLI">
+    Use the [deployment ping](/developer-tools/cli/reference/deployments#ping) command to get the URL of your deployment.
+
+    ```
+    launch deployments ping $DEPLOYMENT_ID
+    ```
+
+    ```
+    Deployments
+    -----------
+    -   id: deployment_37019776288
+        ...
+        url: https://<PROJECT-ID>-<DEPLOYMENT_ID_NUMBER|ENV_NAME>.launchflow.app
+        ...
+    ```
+  </Tab>
+</Tabs>

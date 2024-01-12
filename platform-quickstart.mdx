@@ -1,0 +1,284 @@
+---
+title: Platform Quickstart
+---
+
+[BuildFlow](https://buildflow.dev) allows you to simplify your backend, and LaunchFlow makes it even easier to build and deploy your backend applications.
+
+In this walkthrough we'll show you how to:
+
+- Run and debug a simple HTTP server locally
+- Launch your HTTP server to the cloud
+- Monitoring and debug your remote deployment
+
+There are two main ways to interact with LaunchFlow. Through our VS Code extension or through the CLI.
+
+<Tabs>
+  <Tab title="VS Code Extension">
+    <Steps>
+      <Step title="Install LaunchFlow VS Code Extension">
+        <a 
+          style={{
+            height: 'fit-content', 
+            display: 'inline-block', 
+            alignItems: 'center', 
+            gap: '8px', 
+            paddingTop: '0', 
+            paddingLeft: '16px', 
+            paddingRight: '12px', 
+            borderRadius: '15px', 
+            fontSize: '1rem', 
+            backgroundColor: '#3789ff', 
+            color: 'white',
+          }}
+          href="vscode:extension/LaunchFlow.launchflow"
+          onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#4994ff'}
+          onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#3789ff'}
+        >
+          Install in VS Code
+        </a>
+        Once installed you can open the extension by clicking the LaunchFlow logo in the side bar, or by running the `LaunchFlow: Focus on Workspace View` VS Code command.
+        <Frame className="tailwind styles sm:hidden">
+                <img style={{maxHeight: "500px", margin: 0}} alt="Open Extension" src="/images/open-extension.png"/>
+        </Frame>
+      </Step>
+      <Step title="Install BuildFlow">
+        Install the BuildFlow Python framework. **BuildFlow** is the open source Python framework that powers the LaunchFlow platform.
+
+        ```
+        pip install buildflow
+        ```
+      </Step>
+      <Step title="Create your First Application">
+        The first screen of the extension houses all of the BuildFlow applications that are in your current workspace. You can always navigate back to this screen by clicking the `Home` icon in the top bar, or by click `Apps` in the hamburger menu.
+
+          To create your first application select `Create from Template`. This will open a prompt for you to select a template, select `BuildFlow Service`, and select a directory to save your application in. This will add the application to your workspace and should appear as `buildflow-service` on the `Apps` page.
+
+          <Tip>
+            The application name is determined by your buildflow.yaml and you can update it at any time.
+          </Tip>
+
+          <Frame className="tailwind styles sm:hidden">
+                <img style={{maxHeight: "500px", margin: 0}} alt="Service Template" src="/images/buildflow-service-template.png"/>
+          </Frame>
+      </Step>
+      <Step title="Run your Application Locally">
+        Once your application is created you can select it by clicking the name (`buildflow-service`) on the `Apps` page. This will attach the VS Code extension to your application and allow you to run useful commands on it. Simply click `Run Locally` to run your application. This will open the `Launches` page attached to your run.
+        <Tip>
+          You can also run your application by clicking the LaunchFlow Icon in the top right and selecting `Launch Run (local)` from any file in your application.
+        </Tip>
+        <Frame className="tailwind styles sm:hidden">
+              <img style={{maxHeight: "500px", margin: 0}} alt="Runtime" src="/images/runtime.png"/>
+        </Frame>
+      </Step>
+      <Step title="Debug your Application Locally">
+        From the `Launches` page you can perform many operations such as:
+        <div className="grid sm:grid-cols-2">
+            <div>
+                <ul>
+                    <li>Drain / Stop your Job</li>
+                    <li>View Metrics</li>
+                    <li>Visit the Swagger UI for OpenAPI docs</li>
+                    <li>Reopen the Logs</li>
+                </ul>
+                Once you are done you can stop your job by clicking `Drain Launch` or `Stop Launch` to stop your job.
+            </div>
+            <div>
+                <Frame className="tailwind styles sm:hidden">
+                    <img style={{maxHeight: "500px", margin: 0}} alt="Running Local" src="/images/running-local.png"/>
+                </Frame>
+            </div>
+        </div>
+      </Step>
+      <Step title="Upgrade your Account">
+        In order you launch a remote deployment you will need to upgrade your account to our [standard tier](https://www.launchflow.com/pricing). You can do this by navigating to the account page by clicking the `User` icon in the top bar, or by clicking `Account` in the hamburger menu.
+
+        Once on the account you can sign in with your Google or GitHub account, then click `Upgrade Account`. Once complete your account will be credited with $50 of free credit, and you can begin launching remote deployments!
+
+        <Frame className="tailwind styles sm:hidden">
+              <img style={{maxHeight: "500px", margin: 0}} alt="Upgrade Account" src="/images/upgrade-account.png"/>
+        </Frame>
+      </Step>
+      <Step title="Deploy your Application Remotely">
+        Navigate back to the `Apps` page and select the app you created above. Then click `Launch Deployment`. This will prompt you to connect a project to you application. Click `Yes` then enter a name for your project. Projects are a way to group your remote deployments together and you can create as many as you want. We recommend having one project per application.
+          <Tip>
+          You can also launch your application by clicking the LaunchFlow Icon in the top right and selecting `Launch Deploiyment (remote)` from any file in your application.
+        </Tip>
+        <Frame className="tailwind styles sm:hidden">
+              <img style={{maxHeight: "500px", margin: 0}} alt="Remote Deployment" src="/images/full-launch.gif"/>
+        </Frame>
+      </Step>
+      <Step title="Debug your Remote Application">
+        <div className="grid sm:grid-cols-2 space-x-2">
+            <div>
+                Once your deployment is launched it will open a similar UI to the local run. You can view the **status** of your deployment, **real-time metrics**, and **real-time logs**. You can also visit the URL that was assigned to your deployment to view your application from the `Services` tab.
+
+                Once you are done you can stop your job by clicking `Drain Launch` or `Stop Launch`. This will stop your job.
+            </div>
+            <div>
+                <Frame className="tailwind styles sm:hidden">
+                    <img style={{maxHeight: "500px", margin: 0}} alt="Running Remotely" src="/images/launch-with-services.png"/>
+                </Frame>
+            </div>
+        </div>
+      </Step>
+      <Step title="View Historical Deployments">
+        <div className="grid sm:grid-cols-2 space-x-2">
+            <div>
+              After your deployment is stopped you can view it at anytime by opening the `Launches` page by clicking the `Rocket` icon in the top bar or by clicking `Launches` in the hamburger menu. You can also view your deployments by clicking the `Services` icon in the top bar or by clicking `Services` in the hamburger menu.
+
+              From this view you can click the deployment ID and view the status and **historical logs** of your deployment.
+            </div>
+            <div>
+                <Frame className="tailwind styles sm:hidden">
+                    <img style={{maxHeight: "500px", margin: 0}} alt="Launches Tab" src="/images/launches-tab.png"/>
+                </Frame>
+            </div>
+        </div>
+      </Step>
+    </Steps>
+
+  </Tab>
+  <Tab title="CLI">
+    <Steps>
+      <Step title="Install BuildFlow">
+        To get started you will first need to install **BuildFlow**. **BuildFlow** is a Python framework that allows you to build your entire backend application.
+
+        ```
+        pip install buildflow
+        ```
+      </Step>
+      <Step title="Create your first Application">
+        First create a directory to house your application. Then you can create a new simple application by running:
+
+        ```
+        buildflow init
+        ```
+
+        This will prompt you to name your application and create all the necessary files.
+      </Step>
+      <Step title="Run your Application Locally">
+        The application you created can be run with zero changes. Running it will start a local HTTP server that you can visit at http://localhost:8000. To run your application locally run:
+
+        ```
+        buildflow run
+        ```
+      </Step>
+      <Step title="Debug your Application Locally">
+        Once your application is running you can visit http://localhost:8000 to view it. You can also view the openapi docs for it at http://localhost:8000/docs.
+      </Step>
+      <Step title="Install LaunchFlow CLI">
+        To get started with LaunchFlow cloud you will need to install the LaunchFlow CLI. This is available as a Python package.
+
+        ```
+        pip install launchflow
+        ```
+      </Step>
+      <Step title="Create an Account">
+        To create an account you can run:
+
+        ```
+        launch auth login
+        ```
+
+        This will prompt you to login with your Google or GitHub account, and we will create a LaunchFlow cloud account for you and output the details of the account.
+
+        <Tip>
+            You can run the following to avoid having to provide your account ID for future commands:
+
+            ```
+            launch config set-default-account $ACCOUNT_ID
+            ```
+        </Tip>
+
+        Once you've signed up you can view details about your account with:
+
+        ```
+        launch accounts list
+        ```
+      </Step>
+      <Step title="Upgrade your Account">
+        In order you launch a remote deployment you will need to upgrade your account to our [standard tier](https://www.launchflow.com/pricing). You can do this by running:
+
+        ```
+        launch account upgrade
+        ```
+
+        This will generate a URL that you can follow to complete the upgrade process, and you account will be credited with $50 of free credit.
+      </Step>
+      <Step title="Deploy your Application Remotely">
+        To deploy your application to the cloud you will first need to [create a project](/launchflow-cloud/user-guides/projects#creating-a-project) that the deployment runs in. Your project name must contain only numbers, letters (lower or upper case), hypens (-), and be less than 64 characters.
+
+        ```
+        launch projects create PROJECT_DISPLAY_NAME
+        ```
+
+        <Tip>
+            If you plan to use this as your main / default project you can run:
+
+            ```
+            launch config set-default-project $PROJECT_ID
+            ```
+
+            And all future commands will use this project by default.
+        </Tip>
+
+        You can list your projects at anytime with:
+
+        ```
+        launch projects list
+        ```
+
+        Once your project is created you can deploy your application by running in the root directory of your application:
+
+        ```
+        launch deploy
+        ```
+
+        This command will complete once your deployment is launched and output additional commands you can use to monitor your deployment. Note the deployment ID (`deployment_XXXXXXXX`)that is output, you will need this to debug your deployment.
+      </Step>
+      <Step title="Debug your Remote Application">
+      You can check the status of your deployment at anytime by running:
+
+      ```
+      launch deployments ping $DEPLOYMENT_ID
+      ```
+
+      This will output the status of your deployment, health metrics, and additional metadata such as the URL that was assigned to your deployment. You can visit that at anytime to view your application.
+
+      <Tip>
+        You add `/docs` to the URL to view the openapi documentation for your application.
+      </Tip>
+
+      You can view the logs for your deployment by running:
+
+      ```
+      launch deployments logs $DEPLOYMENT_ID
+      ```
+
+      <Tip>
+        Whether your deployment is running or stopped you can always run `ping` and `logs` to access historical data.
+      </Tip>
+      </Step>
+      <Step title="Stop your Deployment">
+      You can stop your deployment at any time by running the `drain` or `stop` commands. Drain will turn off traffic and let all current traffic finish before shutting down. Stop will immediately shut down your deployment.
+
+      ```
+      launch deployments drain $DEPLOYMENT_ID
+      ```
+
+      ```
+      launch deployments stop $DEPLOYMENT_ID
+      ```
+      </Step>
+    </Steps>
+
+  </Tab>
+</Tabs>
+
+## What's Next?
+
+- Learn about additional [BuildFlow features](/buildflow/)
+- Learn about additional [LaunchFlow cloud features](/launchflow-cloud/)
+- Create and Deploy your Application across [multiple environments](/launchflow-cloud/user-guides/environments)
+- Push new versions of your application with [zero downtime](/launchflow-cloud/user-guides/update-a-deployment)
+- Set up a [fully automated CI/CD pipeline](/launchflow-cloud/user-guides/setup-a-release-pipeline)

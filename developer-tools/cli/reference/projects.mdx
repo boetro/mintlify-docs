@@ -1,0 +1,75 @@
+---
+title: Projects
+---
+
+## Create
+
+```
+                                                                                                                                        
+ Usage: launch projects create [OPTIONS] DISPLAY_NAME                                                                                   
+                                                                                                                                        
+ Create a project for an account                                                                                                        
+                                                                                                                                        
+╭─ Arguments ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ *    display_name      TEXT  Display name of the project [default: None] [required]                                                  │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ Options ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ --account-id        TEXT  The id of the account to apply the operation on. If this is unset we will use the default account set in   │
+│                           the config. Should be of the format:`account_XXXXX`                                                        │
+│                           [default: None]                                                                                            │
+│ --help                    Show this message and exit.                                                                                │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+```
+
+## Delete
+
+```
+                                                                                                                                        
+ Usage: launch projects delete [OPTIONS] PROJECT_ID                                                                                     
+                                                                                                                                        
+ Delete a project                                                                                                                       
+                                                                                                                                        
+╭─ Arguments ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ *    project_id      TEXT  The project ID to delete [default: None] [required]                                                       │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ Options ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ --help          Show this message and exit.                                                                                          │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+```
+
+## List
+
+```
+$ launch projects list --help
+                                                                                                                               
+ Usage: launch projects list [OPTIONS]                                                                                         
+                                                                                                                               
+ List projects for an account                                                                                                  
+                                                                                                                               
+╭─ Options ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ --account-id          TEXT  The name of the account to apply the operation on. If this is unset we will use the default     │
+│                             account set in the config. Should be of the format:`account_XXXXX`                              │
+│                             [default: None]                                                                                 │
+│ --expand      -e            Show all resources below projects (deployments)                                                 │
+│ --active      -a            Only to include active deployments in expansion. NOTE: this only applies if you pass the        │
+│                             --expand or -e flag                                                                             │
+│ --help                      Show this message and exit.                                                                     │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+```
+
+## Update
+
+```
+                                                                                                                                        
+ Usage: launch projects update [OPTIONS] PROJECT_ID                                                                                     
+                                                                                                                                        
+ Update a project                                                                                                                       
+                                                                                                                                        
+╭─ Arguments ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ *    project_id      TEXT  The project ID to update [default: None] [required]                                                       │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ Options ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ *  --display-name        TEXT  The new display name of the project [default: None] [required]                                        │
+│    --help                      Show this message and exit.                                                                           │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+```

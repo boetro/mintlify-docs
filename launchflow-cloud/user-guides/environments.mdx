@@ -1,0 +1,195 @@
+---
+title: Environments
+description: "Create and manage environments"
+---
+
+Environments allow you to save a configuration for running your deployment. You do this by creating an environment and configuring it with environment variables that will be set when a deployment is launched in the environment.
+
+Any number of environments can be created within a project. We recommend having one environment per set of configuration. For example you might have a `dev`, `staging` and `production` environment. With these environments you can easily set up a release pipeline to deploy from `dev` -> `staging` -> `production`. See our guide on [creating a release pipeline](/launchflow-cloud/user-guides/setup-a-release-pipeline) for more information.
+
+
+## Creating an Environment
+
+When creating a new environment you must specify a name and a project to create the environment in. The name must be unique for your project, contain only alphanumeric characters, hyphens (`-`), and be between 3 and 30 characters long.
+
+When you create your environment you will be given a `deployment_key` that can be used to launch, update, and manage deployments in the environment. This deployment key can be use in any environment allowing you do things like deploy from a GitHub Action.
+
+<Warning>
+
+    You will only be shown the `deployment_key` once when you create the environment. Ensure you record it somewhere secure. You can [regenerate a new deployment key](/launchflow-cloud/user-guides/environments#regenerate-deployment-key) at any time though.
+
+</Warning>
+
+<Tabs>
+  <Tab title="VS Code Extension">
+<div className="grid sm:grid-cols-2 space-x-2">
+  <div>
+  <ol>
+      <li>Navigate to the <code>Projects</code> tab</li>
+      <li>Select a project by clicking on the name</li>
+      <li>Click <code>Create Environment</code></li>
+      <li>Enter a name for your environment</li>
+      <li>Hit enter</li>
+   </ol>
+   <Note>
+      Once created you can copy the <code>deployment_key</code> and save it somewhere securly. You can also optionally save it securely in VS Code SecretStore locally by confirming the popup. 
+   </Note>
+   </div>
+  <div>
+   <Frame className="tailwind styles sm:hidden">
+      <img style={{maxHeight: "500px", margin: 0}} alt="Create environment" src="/images/created-environment.png"/>
+   </Frame>
+   </div>
+</div>
+  </Tab>
+  <Tab title="CLI">
+    Use the [environments create](/developer-tools/cli/reference/environments#create) command to create an environment.
+
+    ```
+    launch environments create \
+        --name=$ENVIRONMENT_NAME \
+        --project-id=$PROJECT_ID
+    ```
+
+    <Tip>
+        If you have set a [default project](/developer-tools/cli/reference/config#set-default-project) you can omit the `--project-id` flag.
+    </Tip>
+  </Tab>
+</Tabs>
+
+## Managing an Environment
+
+### Update Environment variables
+
+<Tabs>
+  <Tab title="VS Code Extension">
+<div className="grid sm:grid-cols-2">
+  <div>
+    <ol>
+        <li>Navigate to the <code>Projects</code> tab</li>
+        <li>Select a project by clicking on the name</li>
+        <li>Select an environment by clicking on the name</li>
+        <li>Click <code>Edit Environment</code></li>
+        <li>Add, remove, or edit any environment variables</li>
+        <li>Click `Save Environment Changes`</li>
+    </ol>
+   </div>
+  <div>
+    <Frame className="tailwind styles sm:hidden">
+      <img style={{maxHeight: "500px", margin: 0}} alt="Update environment" src="/images/update-environment.png"/>
+    </Frame>
+  </div>
+</div>
+  </Tab>
+  <Tab title="CLI">
+  There are three commands for updating environment variables in an environment.
+
+  1. [clear-env-vars](/developer-tools/cli/reference/environments#update-env-vars)
+
+  Will remove the specified environment variables from the environment. You can specify multiple environment variables by passing multiple `-e` flags.
+
+  ```
+  launch environments clear-env-vars --project-id=$PROJECT_ID --name=$ENVIRONMENT_NAME -e $ENV_VAR_NAME
+  ```
+
+  2. [set-env-vars](/developer-tools/cli/reference/environments#set-env-vars)
+
+  Will override the currently set environemnt variables with what you provide. You can specify multiple environment variables by passing multiple `-e` flags.
+
+  ```
+  launch environments set-env-vars --project-id=$PROJECT_ID --name=$ENVIRONMENT_NAME -e $ENV_VAR_NAME=$ENV_VAR_VALUE
+  ```
+
+  <Warning>
+    This will remove all existing environment variables and replace them with the ones you provide.
+  </Warning>
+  3. [update-env-vars](/developer-tools/cli/reference/environments#update-env-vars)
+
+  This will update or add any environment variable you provide. You can specify multiple environment variables by passing multiple `-e` flags.
+
+  ```
+  launch environments update-env-vars --project-id=$PROJECT_ID --name=$ENVIRONMENT_NAME -e $ENV_VAR_NAME=$ENV_VAR_VALUE
+  ```
+  
+  <Note>
+    This will not remove any existing environment variables.
+  </Note>
+  </Tab>
+</Tabs>
+
+### Update Environment Configuration
+
+<Tabs>
+  <Tab title="VS Code Extension">
+    <div className="grid sm:grid-cols-2">
+      <div>
+        <ol>
+            <li>Navigate to the <code>Projects</code> tab</li>
+            <li>Select a project by clicking on the name</li>
+            <li>Select an environment by clicking on the name</li>
+            <li>Click <code>Edit Environment</code></li>
+            <li>Update machine and worker configuration</li>
+            <li>Click `Save Environment Changes`</li>
+        </ol>
+      </div>
+      <div>
+        <Frame className="tailwind styles sm:hidden">
+          <img style={{maxHeight: "500px", margin: 0}} alt="Update environment" src="/images/update-environment.png"/>
+        </Frame>
+      </div>
+    </div>
+  </Tab>
+  <Tab title="CLI">
+    Use the [environments update](/developer-tools/cli/reference/environments#update) command to update the machine configuration of an environment.
+
+    ```
+    launch environments update --name=$ENVIRONMENT_NAME --project-id=$PROJECT_ID --num-cpus=$NUM_CPUS --max-workers=$MAX_WORKERS
+    ```
+
+    <Tip>
+        If you have set a [default project](/developer-tools/cli/reference/config#set-default-project) you can omit the `--project-id` flag.
+    </Tip>
+  </Tab>
+</Tabs>
+
+### Regenerate Deployment Key
+
+<Tabs>
+  <Tab title="VS Code Extension">
+    <div className="grid sm:grid-cols-2 space-x-2">
+      <div>
+        <ol>
+            <li>Navigate to the <code>Projects</code> tab</li>
+            <li>Select a project by clicking on the name</li>
+            <li>Select an environment by clicking on the name</li>
+            <li>Click <code>Regenerate Deployment Key</code></li>
+        </ol>
+        <Note>
+            Once regenerated you can copy the <code>deployment_key</code> and save it somewhere securly. You can also optionally save it securely in VS Code SecretStore locally by confirming the popup. 
+        </Note>
+      </div>
+      <div>
+        <Frame className="tailwind styles sm:hidden">
+          <img style={{maxHeight: "500px", margin: 0}} alt="Regenerate Deployment Key" src="/images/regenerate-dkey.png"/>
+        </Frame>
+      </div>
+    </div>
+  </Tab>
+  <Tab title="CLI">
+    Use the [environments regen-deployment-key](/developer-tools/cli/reference/environments#regen-deployment-key) command to regenerate a deployment key for an environment.
+
+    ```
+    launch environments regen-deployment-key --project-id=$PROJECT_ID --name=$ENVIRONMENT_NAME
+    ```
+
+    <Warning>
+        You will only be shown the `deployment_key` once when you create the environment. Ensure you record it somewhere secure. You can [regenerate a new deployment key](/launchflow-cloud/user-guides/environments#regenerate-deployment-key) at any time though.
+    </Warning>
+  </Tab>
+</Tabs>
+
+
+## What's next?
+
+- [Launch a deployment](/launchflow-cloud/user-guides/launch-a-deployment) in your environment
+- [Setup a release pipeline](/launchflow-cloud/user-guides/setup-a-release-pipeline) to deploy your application across environments

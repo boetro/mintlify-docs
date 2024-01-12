@@ -1,0 +1,240 @@
+---
+title: Deployments
+---
+
+## Drain
+
+```
+$ launch deployments drain --help
+                                                                                                                               
+ Usage: launch deployments drain [OPTIONS] DEPLOYMENT_ID                                                                       
+                                                                                                                               
+ Drain a running deployment.                                                                                                   
+                                                                                                                               
+╭─ Arguments ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ *    deployment_id      TEXT  The deployment id to drain. [default: None] [required]                                        │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ Options ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ --help          Show this message and exit.                                                                                 │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+```
+
+## List
+
+```
+$ launch deployments list --help
+                                                                                                                               
+ Usage: launch deployments list [OPTIONS]                                                                                      
+                                                                                                                               
+ List deployments for an account.                                                                                              
+                                                                                                                               
+╭─ Options ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ --account-id          TEXT  The name of the account to apply the operation on. If this is unset we will use the default     │
+│                             account set in the config. Should be of the format:`account_XXXXX`                              │
+│                             [default: None]                                                                                 │
+│ --projects            TEXT  The project to list deployments for.                                                            │
+│ --active      -a            If --active is set only active deployments will be returned.                                    │
+│ --help                      Show this message and exit.                                                                     │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+```
+
+## Logs
+
+```
+$ launch deployments logs --help
+                                                                                                                               
+ Usage: launch deployments logs [OPTIONS] DEPLOYMENT_ID                                                                        
+                                                                                                                               
+ Get logs for a deployment.                                                                                                    
+                                                                                                                               
+╭─ Arguments ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ *    deployment_id      TEXT  The deployment id to get logs for. [default: None] [required]                                 │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ Options ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ --start-timestamp        [%Y-%m-%d|%Y-%m-%dT%H:%M:%S|%Y-%m-%d %H:%M:%S]  Look up logs from after this timestamp.            │
+│                                                                          [default: None]                                    │
+│ --end-timestamp          [%Y-%m-%d|%Y-%m-%dT%H:%M:%S|%Y-%m-%d %H:%M:%S]  Look up logs from before this timestamp.           │
+│                                                                          [default: None]                                    │
+│ --page-token             TEXT                                            The page token to use to continue reading logs.    │
+│                                                                          This will be printed out if we were unable to      │
+│                                                                          return all logs.                                   │
+│                                                                          [default: None]                                    │
+│ --help                                                                   Show this message and exit.                        │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+```
+
+## Ping
+
+```
+$ launch deployments ping --help
+                                                                                                                               
+ Usage: launch deployments ping [OPTIONS] DEPLOYMENT_IDS...                                                                    
+                                                                                                                               
+ Ping info for a list of deployments.                                                                                          
+                                                                                                                               
+╭─ Arguments ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ *    deployment_ids      DEPLOYMENT_IDS...  The deployment ids to fetch info for. [default: None] [required]                │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ Options ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ --help          Show this message and exit.                                                                                 │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+```
+
+## Promote Environment
+
+```
+$ launch deployments promote-environment --help
+                                                                                                                                        
+ Usage: launch deployments promote-environment [OPTIONS]                                                                                
+                                                                                                                                        
+ Promote the running code from one environment to another. If an deployment is already running in the environment it will be updated.   
+                                                                                                                                        
+╭─ Options ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│    --project-id                                    TEXT  The project id to submit to. If not set will default to your buildflow      │
+│                                                          project in buildflow.yaml.                                                  │
+│                                                          [default: None]                                                             │
+│ *  --from,--from-environment  -f                   TEXT  The environment to promote from. [default: None] [required]                 │
+│ *  --to,--to-environment      -t                   TEXT  The environment to promote to. [default: None] [required]                   │
+│ *  --dkey                                          TEXT  The deployment key to use when deploying to an environment. This should be  │
+│                                                          the key for the environment you are promoting to.                           │
+│                                                          [default: None]                                                             │
+│                                                          [required]                                                                  │
+│    --blocking                     --no-blocking          Whether or not the command should block until the deployment is running.    │
+│                                                          [default: blocking]                                                         │
+│    --help                                                Show this message and exit.                                                 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+```
+
+## Stop
+
+```
+$ launch deployments stop --help
+                                                                                                                               
+ Usage: launch deployments stop [OPTIONS] DEPLOYMENT_ID                                                                        
+                                                                                                                               
+ Stop a running deployment.                                                                                                    
+                                                                                                                               
+╭─ Arguments ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ *    deployment_id      TEXT  The deployment id to stop. [default: None] [required]                                         │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ Options ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ --help          Show this message and exit.                                                                                 │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+```
+
+## Submit
+
+<Tip>
+    You can use `launch deploy` as a shorthand for `launch deployments submit`.
+</Tip>
+
+<Tip>
+    If you run this command from the directory of your buildflow project you can exclude the `build_file` argument.
+
+    For example:
+
+    ```
+        launch deployments submit
+    ```
+</Tip>
+
+```
+$ launch deployments submit --help
+                                                                                                                               
+ Usage: launch deployments submit [OPTIONS] [BUILD_FILE]                                                                       
+                                                                                                                               
+ Submit a new deployment to LaunchFlow cloud.                                                                                  
+                                                                                                                               
+╭─ Arguments ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│   build_file      [BUILD_FILE]  The build.flow file generated by `buildflow build`, if not provided we will attempt to      │
+│                                 build one from your current directory.                                                      │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ Options ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ --project                                                  TEXT     The project to submit to. If not set will default to    │
+│                                                                     your buildflow project in buildflow.yaml                │
+│ --account-id                                               TEXT     The name of the account to apply the operation on. If   │
+│                                                                     this is unset we will use the default account set in    │
+│                                                                     the config. Should be of the format:`account_XXXXX`     │
+│                                                                     [default: None]                                         │
+│ --num-cpus                                                 INTEGER  The number of CPUs to use. [default: None]              │
+│ --machine-type                                             TEXT     The machine type to use. [default: None]                │
+│ --max-workers                                              INTEGER  The max number of workers. [default: None]              │
+│ --stream-deployment-logs    --no-stream-deployment-logs             Whether or not to stream the deployment logs after      │
+│                                                                     submission.                                             │
+│                                                                     [default: no-stream-deployment-logs]                    │
+│ --help                                                              Show this message and exit.                             │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+```
+
+## Update
+
+<Tip>
+    If you run this command from the directory of your buildflow project you can exclude the `build_file` argument.
+
+    For example:
+
+    ```
+        launch deployments update $DEPLOYMENT_ID_TO_UPDATE
+    ```
+</Tip>
+
+```
+$ launch deployments update --help
+                                                                                                                               
+ Usage: launch deployments update [OPTIONS] DEPLOYMENT_TO_UPDATE [BUILD_FILE]                                                  
+                                                                                                                               
+ Update an existing deployment from your local code                                                                            
+                                                                                                                               
+╭─ Arguments ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ *    deployment_to_update      TEXT          The source deployment to update [default: None] [required]                     │
+│      build_file                [BUILD_FILE]  The build.flow file generated by `buildflow build`, if not provided we will    │
+│                                              attempt to build one from your current directory.                              │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ Options ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ --project             TEXT     The project to submit to. If not set will default to your buildflow project in               │
+│                                buildflow.yaml                                                                               │
+│ --account-id          TEXT     The name of the account to apply the operation on. If this is unset we will use the default  │
+│                                account set in the config. Should be of the format:`account_XXXXX`                           │
+│                                [default: None]                                                                              │
+│ --num-cpus            INTEGER  The number of CPUs to use. [default: None]                                                   │
+│ --machine-type        TEXT     The machine type to use. [default: None]                                                     │
+│ --max-workers         INTEGER  The max number of workers. [default: None]                                                   │
+│ --help                         Show this message and exit.                                                                  │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+```
+
+## Update Environment
+
+<Tip>
+    If you run this command from the directory of your buildflow project you can exclude the `build_file` argument.
+
+    For example:
+
+    ```
+        launch deployments update-environment -e dev --dkey $DEPLOYMENT_KEY
+    ```
+</Tip>
+
+```
+$ launch deployments update-environment --help
+                                                                                                                                        
+ Usage: launch deployments update-environment [OPTIONS] [BUILD_FILE]                                                                    
+                                                                                                                                        
+ Update an environment from your local code. If a deployment isn't running in the environment one will be launched.                     
+                                                                                                                                        
+╭─ Arguments ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│   build_file      [BUILD_FILE]  The build.flow file generated by `buildflow build`, if not provided we will attempt to build one     │
+│                                 from your current directory.                                                                         │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ Options ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ --project-id                        TEXT  The project id to submit to. If not set will default to your buildflow project in          │
+│                                           buildflow.yaml.                                                                            │
+│                                           [default: None]                                                                            │
+│ --environment  -e                   TEXT  The environment to use for your deployment. [default: None]                                │
+│ --dkey                              TEXT  The deployment key to use when deploying to an environment. [default: None]                │
+│ --blocking         --no-blocking          Whether or not the command should block until the deployment is running.                   │
+│                                           [default: blocking]                                                                        │
+│ --help                                    Show this message and exit.                                                                │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+```

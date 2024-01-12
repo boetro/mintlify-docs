@@ -1,0 +1,81 @@
+---
+title: Monitor a Deployment
+---
+
+To monitor a deployment you can:
+
+- View deployment logs in realtime
+- View realtime deployment metrics
+
+## Deployment logs
+
+You can live stream logs for running deployments or view historical logs for any stopped deployments.
+
+<Tabs>
+  <Tab title="VS Code Extension">
+    <div className="grid sm:grid-cols-2 space-x-2">
+      <div>
+        <ol>
+          <li>Navigate to the <code>Launches Page</code></li>
+          <li>Click a deployment</li>
+          <li>Click the <code>Open Logs Stream</code> button for running deployments or the <code>View Remote Logs</code> button for stopped deployments.</li>
+          <li>This will open up the logs in the <code>OUTPUT</code> tab in VS Code.</li>
+        </ol>
+        <Tip>
+          If the deployment is currently running this will live stream logs in until you navigate away from the launch.
+        </Tip>
+      </div>
+      <div>
+      <Frame className="tailwind styles sm:hidden">
+          <img style={{maxHeight: "500px", margin: 0}} alt="Deployment Logs" src="/images/deployment-logs.png"/>
+      </Frame>
+      </div>
+    </div>
+
+  </Tab>
+  <Tab title="CLI">
+    Use the [deployment logs](/developer-tools/cli/reference/deployments#logs) command to view deployment logs.
+
+    ```
+    launch deployments logs $DEPLOYMENT_ID
+    ```
+  </Tab>
+</Tabs>
+
+## Deployment metrics
+
+Deployment metrics can be viewed in realtime. Metrics are collected via prometheus for all deployments. A UI for viewing historical metrics will be coming soon!
+
+<Tabs>
+  <Tab title="VS Code Extension">
+    <div className="grid sm:grid-cols-2 space-x-2">
+      <div>
+        <ol>
+          <li>Navigate to the <code>Launches Page</code></li>
+          <li>Click a running deployment deployment</li>
+          <li>Select the metrics tab</li>
+        </ol>
+        <Tip>
+          Clicking on a `processor` will filter the metrics to only that processor.
+        </Tip>
+      </div>
+      <div>
+      <Frame className="tailwind styles sm:hidden">
+          <img style={{maxHeight: "500px", margin: 0}} alt="Deployment Metrics" src="/images/deployment-metrics.png"/>
+      </Frame>
+      </div>
+    </div>
+  </Tab>
+  <Tab title="CLI">
+    Use the [deployment ping](/developer-tools/cli/reference/deployments#ping) command to view realtime metrics.
+
+    ```
+    launch deployments ping $DEPLOYMENT_ID
+    ```
+  </Tab>
+</Tabs>
+
+## What's next?
+
+- [Update your deployment](/launchflow-cloud/user-guides/update-a-deployment)
+- [Setup a release pipeline](/launchflow-cloud/user-guides/setup-a-release-pipeline) to deploy your application across environments

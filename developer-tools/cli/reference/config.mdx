@@ -1,0 +1,58 @@
+---
+title: Config
+---
+
+## Get
+
+```
+$ launch config get --help
+                                                                                                                               
+ Usage: launch config get [OPTIONS]                                                                                            
+                                                                                                                               
+╭─ Options ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ --help          Show this message and exit.                                                                                 │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+```
+
+## Set Default Account
+
+<Tip>
+    This command is useful if you have multiple accounts and want to set one as the default.
+</Tip>
+
+```
+$ launch config set-default-account --help
+                                                                                                                               
+ Usage: launch config set-default-account [OPTIONS] ACCOUNT_ID                                                                 
+                                                                                                                               
+ Set the default account that should be used for commands. If set to an empty string we will clear it from the config.         
+                                                                                                                               
+╭─ Arguments ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ *    account_id      TEXT  The account ID to set as default [default: None] [required]                                      │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ Options ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ --help          Show this message and exit.                                                                                 │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+```
+
+## Set Default Project
+
+<Tip>
+    This command is useful if you have one project or many project but use one of them for most of your work.
+</Tip>
+
+```
+$ launch config set-default-project --help
+                                                                                                                                        
+ Usage: launch config set-default-project [OPTIONS] PROJECT_ID                                                                          
+                                                                                                                                        
+ Set the default project that should be used for commands the require a project ID. If set to an empty string we will clear it from the 
+ config.                                                                                                                                
+                                                                                                                                        
+╭─ Arguments ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ *    project_id      TEXT  The proejct ID to set as default [default: None] [required]                                               │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ Options ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ --help          Show this message and exit.                                                                                          │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+```

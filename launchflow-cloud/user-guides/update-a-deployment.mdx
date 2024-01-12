@@ -1,0 +1,52 @@
+---
+title: Update a Deployment
+---
+
+Updating a deployment allows you to migrate traffic to a new version of your application with **zero** downtime. This is useful for deploying new features, bug fixes, or rolling back to a previous version of your application.
+
+<Note>
+  To update a deployment the deployment **must** be running in an environment.
+</Note>
+
+<Tabs>
+  <Tab title="VS Code Extension">
+    Updating an environment is the same as deploying to an environment. If you deploy to a running environment, we will update the deployment with the new version of your application.
+    <div className="grid sm:grid-cols-2 space-x-2">
+      <div>
+        <ol>
+            <li>Navigate to the <code>Apps</code> tab</li>
+            <li>Select the application you want to deploy</li>
+            <li>Click <code>Launch Deployment</code></li>
+            <li>Select the environment you would like to update</li>
+            <li>Provide the deployment key for the environment if it is not saved locally.</li>
+            <li>Once running you can navigate to the `Services` tab to visit the URL assigned to your deployment</li>
+
+        </ol>
+      </div>
+      <div>
+      <Frame className="tailwind styles sm:hidden">
+          <img style={{maxHeight: "500px", margin: 0}} alt="Launch Deployment" src="https://storage.googleapis.com/launchflow-public-images/launch-cropped.gif"/>
+      </Frame>
+      </div>
+    </div>
+  </Tab>
+  <Tab title="CLI">
+    Use the [deployment update-environment](/developer-tools/cli/reference/deployments#update-environment) command from the root directory of your application to update a deployment in an environment.
+
+    ```
+    launch deployments update-environment \
+        --project-id=$PROJECT_ID \
+        --environment=$ENVIRONMENT_NAME \
+        --dkey=$DEPLOYMENT_KEY
+    ```
+
+    <Tip>
+      If you run this command and there is no deployment running in the environment it will launch a new one.
+    </Tip>
+  </Tab>
+</Tabs>
+
+## What's next?
+
+- [Monitor your update](/launchflow-cloud/user-guides/update-a-deployment)
+- [Setup a release pipeline](/launchflow-cloud/user-guides/setup-a-release-pipeline) to deploy your application across environments

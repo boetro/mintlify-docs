@@ -1,0 +1,168 @@
+---
+title: Environments
+---
+
+<Tip>
+    If you set a default project in your config you can omit the `--project-id` flag from the commands below.
+
+    ```
+    launch config set-default-project project_XXXXX
+    ```
+</Tip>
+
+## Clear Env Vars
+
+```
+                                                                                                                                        
+ Usage: launch environments clear-env-vars [OPTIONS]                                                                                    
+                                                                                                                                        
+ Clear environment variables in an environment.                                                                                         
+                                                                                                                                        
+╭─ Options ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│    --project-id                         TEXT  The id of the project to apply the operation on. If this is unset we will use the      │
+│                                               default project set in the config. Should be of the format:`project_XXXXX`             │
+│                                               [default: None]                                                                        │
+│ *  --name                               TEXT  Name of the environment. [default: None] [required]                                    │
+│    --environment-variable-name  -e      TEXT  Environment variable names that should be removed from the environment. Multiple can   │
+│                                               be provided with -e NAME1 -e NAME2                                                     │
+│                                               [default: None]                                                                        │
+│    --help                                     Show this message and exit.                                                            │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+```
+
+## Create
+
+```
+                                                                                                                                        
+ Usage: launch environments create [OPTIONS]                                                                                            
+                                                                                                                                        
+ Create an environment in a project                                                                                                     
+                                                                                                                                        
+╭─ Options ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│    --project-id                    TEXT         The id of the project to apply the operation on. If this is unset we will use the    │
+│                                                 default project set in the config. Should be of the format:`project_XXXXX`           │
+│                                                 [default: None]                                                                      │
+│ *  --name                          TEXT         Name of the environment this must be unique within the project [default: None]       │
+│                                                 [required]                                                                           │
+│    --environment-variable  -e      FROM_STRING  A map of environment variables to set on the environment. Should be of the format    │
+│                                                 --environment-variable NAME=VALUE --environment-variable NAME2=VALUE2. NOTE: you can │
+│                                                 use -e for shorthand (e.g. -e NAME=VALUE -e NAME2=VALUE2))                           │
+│                                                 [default: None]                                                                      │
+│    --help                                       Show this message and exit.                                                          │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+```
+
+## Delete
+
+```
+                                                                                                                                        
+ Usage: launch environments delete [OPTIONS]                                                                                            
+                                                                                                                                        
+ Delete an environment.                                                                                                                 
+                                                                                                                                        
+╭─ Options ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│    --project-id        TEXT  The id of the project to apply the operation on. If this is unset we will use the default project set   │
+│                              in the config. Should be of the format:`project_XXXXX`                                                  │
+│                              [default: None]                                                                                         │
+│ *  --name              TEXT  Name of the environment this must be unique within the project [default: None] [required]               │
+│    --help                    Show this message and exit.                                                                             │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+```
+
+## List
+
+```
+                                                                                                                                        
+ Usage: launch environments list [OPTIONS]                                                                                              
+                                                                                                                                        
+ List environments for a project                                                                                                        
+                                                                                                                                        
+╭─ Options ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ --project-id        TEXT  The id of the project to apply the operation on. If this is unset we will use the default project set in   │
+│                           the config. Should be of the format:`project_XXXXX`                                                        │
+│                           [default: None]                                                                                            │
+│ --help                    Show this message and exit.                                                                                │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+```
+
+## Regen Deployment Key
+
+```
+                                                                                                                                        
+ Usage: launch environments regen-deployment-key [OPTIONS]                                                                              
+                                                                                                                                        
+ Regenerate a deployment key for an environment.                                                                                        
+                                                                                                                                        
+╭─ Options ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│    --project-id        TEXT  The id of the project to apply the operation on. If this is unset we will use the default project set   │
+│                              in the config. Should be of the format:`project_XXXXX`                                                  │
+│                              [default: None]                                                                                         │
+│ *  --name              TEXT  Name of the environment this must be unique within the project [default: None] [required]               │
+│    --help                    Show this message and exit.                                                                             │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+```
+
+## Set Env Vars
+
+```
+                                                                                                                                        
+ Usage: launch environments set-env-vars [OPTIONS]                                                                                      
+                                                                                                                                        
+ Set environment variables on an environment. This will overwrite any existing environment variables                                    
+                                                                                                                                        
+╭─ Options ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│    --project-id                    TEXT         The id of the project to apply the operation on. If this is unset we will use the    │
+│                                                 default project set in the config. Should be of the format:`project_XXXXX`           │
+│                                                 [default: None]                                                                      │
+│ *  --name                          TEXT         Name of the environment. [default: None] [required]                                  │
+│    --environment-variable  -e      FROM_STRING  A map of environment variables to set on the environment. Should be of the format    │
+│                                                 --environment-variable NAME=VALUE --environment-variable NAME2=VALUE2. NOTE: you can │
+│                                                 use -e for shorthand (e.g. -e NAME=VALUE -e NAME2=VALUE2))                           │
+│                                                 [default: None]                                                                      │
+│    --help                                       Show this message and exit.                                                          │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+```
+
+## Update
+
+```
+                                                                                                                                        
+ Usage: launch environments update [OPTIONS]                                                                                            
+                                                                                                                                        
+ Update an environment.                                                                                                                 
+                                                                                                                                        
+╭─ Options ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│    --project-id         TEXT     The id of the project to apply the operation on. If this is unset we will use the default project   │
+│                                  set in the config. Should be of the format:`project_XXXXX`                                          │
+│                                  [default: None]                                                                                     │
+│ *  --name               TEXT     Name of the environment this must be unique within the project [default: None] [required]           │
+│    --num-cpus           INTEGER  Number of CPUs to allocate to each worker in the environment. If not set this will not be updated   │
+│                                  in the environment.                                                                                 │
+│                                  [default: None]                                                                                     │
+│    --max-workers        INTEGER  Maximum number of workers a deployment is allowed to scale up to. If not set this will not be       │
+│                                  updated in the environment.                                                                         │
+│                                  [default: None]                                                                                     │
+│    --help                        Show this message and exit.                                                                         │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+```
+
+## Update Env Vars
+
+```
+                                                                                                                                        
+ Usage: launch environments update-env-vars [OPTIONS]                                                                                   
+                                                                                                                                        
+ Update or add environment variables to an environment.                                                                                 
+                                                                                                                                        
+╭─ Options ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│    --project-id                    TEXT         The id of the project to apply the operation on. If this is unset we will use the    │
+│                                                 default project set in the config. Should be of the format:`project_XXXXX`           │
+│                                                 [default: None]                                                                      │
+│ *  --name                          TEXT         Name of the environment. [default: None] [required]                                  │
+│    --environment-variable  -e      FROM_STRING  A map of environment variables to update or add to the environment. Should be of the │
+│                                                 format --environment-variable NAME=VALUE --environment-variable NAME2=VALUE2. NOTE:  │
+│                                                 you can use -e for shorthand (e.g. -e NAME=VALUE -e NAME2=VALUE2))                   │
+│                                                 [default: None]                                                                      │
+│    --help                                       Show this message and exit.                                                          │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+```

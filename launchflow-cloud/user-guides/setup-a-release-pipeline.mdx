@@ -1,0 +1,139 @@
+---
+title: Setup Release Pipeline
+---
+
+Using the [launch CLI](/developer-tools/cli) you can easily setup a CI/CD pipeline for you application that runs anywhere (GitHub Actions, BuildKite, Jenkins, etc..).
+
+To get started you will need to create the following:
+
+- A [project](/launchflow-cloud/user-guides/projects#creating-a-project), note the project ID once created you will need that to setup your release pipeline.
+- [Environments](/launchflow-cloud/user-guides/environments#creating-an-environment) (e.g. `dev` and `prod`) for your relase pipeline, save the deployment key somewhere secure. You will need this to deploy to your environments.
+
+<Tabs>
+  <Tab title="GitHub Actions">
+  You can use the [actions-deploy](https://github.com/launchflow/actions-deploy) and [actions-promote](https://github.com/launchflow/actions-promote) GitHub workflows to easily setup a release pipeline that is run on GitHub Actions.
+
+  <Tip>
+    We recommend setting up a [GitHub Environment](https://docs.github.com/en/actions/reference/environments) for each environment in your release pipeline. This will allow you to easily track the status of your deployments in your github repository.
+  </Tip>
+
+  In the below example we will setup two workflows.
+
+    <Steps>
+      <Step title="Deploy to Dev">
+        The first workflow will deploy to our `dev` environment on every push to the `main` branch.
+        <Tip>
+          We recommend storing your project ID and deployment keys as [GitHub Secrets](https://docs.github.com/en/actions/reference/encrypted-secrets) and referencing them in your workflows. If you have multiple environments you can make these secrets specific to each environment (e.g. `LAUNCHFLOW_DEV_DEPLOYMENT_KEY` and `LAUNCHFLOW_PROD_DEPLOYMENT_KEY`).
+        </Tip>
+        ```yaml
+        # .github/workflows/release-dev.yml
+        on:
+          workflow_dispatch:
+
+        name: Release Dev
+        concurrency: dev
+        jobs:
+          release-dev:
+            runs-on: ubuntu-latest
+            permissions:
+              contents: write
+              pull-requests: write
+              id-token: "write"
+            environment: dev
+            steps:
+              - uses: "actions/checkout@v3"
+
+              - name: Set up Python 3.10
+                uses: actions/setup-python@v4
+                with:
+                  python-version: "3.10"
+
+              - name: Install Dependencies
+                run: |
+                  pip install -r requirements.txt
+
+              - name: Deploy to Dev
+                uses: launchflow/actions-deploy@v1
+                with:
+                  project_id: ${{ secrets.LAUNCHFLOW_PROJECT_ID }}
+                  environment_name: prod
+                  deployment_key: ${{ secrets.LAUNCHFLOW_DEV_DEPLOYMENT_KEY }}
+        ```
+      </Step>
+      <Step title="Promote to Prod">
+        The second workflow can be manually triggered to promote the `dev` deployment to `prod`.
+        ```yaml
+        # .github/workflows/promote-to-prod.yml
+        on:
+          workflow_dispatch:
+
+        name: Release Prod
+        concurrency: prod
+        jobs:
+          release-prod:
+            runs-on: ubuntu-latest
+            permissions:
+              contents: write
+              pull-requests: write
+              id-token: "write"
+            environment: prod
+            steps:
+              - uses: "actions/checkout@v3"
+
+              - name: Set up Python 3.10
+                uses: actions/setup-python@v4
+                with:
+                  python-version: "3.10"
+
+              - name: Deploy to Prod
+                uses: launchflow/actions-promote@v1
+                with:
+                  project_id: ${{ secrets.LAUNCHFLOW_PROJECT_ID }}
+                  from_environment_name: dev
+                  to_environment_name: prod
+                  deployment_key: ${{ secrets.LAUNCHFLOW_PROD_DEPLOYMENT_KEY }}
+        ```
+        <Tip>
+            You can easily chain promotions for multi-stage release pipelines (e.g. `dev` -> `staging` -> `prod`) by adding new workflows that use [actions-promote](https://github.com/launchflow/actions-promote)
+        </Tip>
+      </Step>
+    </Steps>
+  </Tab>
+  <Tab title="CLI">
+    You can use the [launch deployments update-environment](/developer-tools/cli/reference/deployments#update-environment) and [launch deployments promote-environment](/developer-tools/cli/reference/deployments#promote-environment) commands to setup your release pipeline. Since these commands authenticate with the unique deployment key that was generated you can run them from any environment of your choosing.
+
+    A release pipeline consisting of two environments (`dev` and `prod`) can be setup with the following commands:
+
+    <Steps>
+      <Step title="Deploy to Dev">
+        First we deploy to our `dev` environment:
+        ```
+        launch deployments update-environment \
+            --project-id=$PROJECT_ID \
+            --environment=dev \
+            --dkey=$DEV_DEPLOYMENT_KEY
+        ```
+        <Tip>
+          If there is no deployment running in dev this will launch a new one.
+        </Tip>
+      </Step>
+      <Step title="Promote to Prod">
+        Next we promote the dev deployment to prod, if there is already a deployment running in prod it will update it otherwise a new deployment will be launched:
+        ```
+        launch deployments promote-environment \
+            --project-id=$PROJECT_ID \
+            --from=$FROM_ENVIRONMENT \
+            --to=prod \
+            --dkey=$PROD_DEPLOYMENT_KEY
+        ```
+        <Tip>
+            You can easily chain promotions for multi-stage release pipelines (e.g. `dev` -> `staging` -> `prod`)
+        </Tip>
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+## What's next?
+
+- [Monitor deployments in your release pipeline](/launchflow-cloud/user-guides/update-a-deployment)

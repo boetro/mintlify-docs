@@ -1,0 +1,37 @@
+---
+title: Authentication
+---
+
+## Login
+
+<Tip>
+    If you do not provide an auth provider we will prompt you to select one.
+</Tip>
+
+```
+$ launch auth login --help
+                                                                                                                               
+ Usage: launch auth login [OPTIONS]                                                                                            
+                                                                                                                               
+ Authenticate with launchflow.                                                                                                 
+                                                                                                                               
+╭─ Options ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ *  --auth-provider        [google|github]  Which provider you will authenticate with (Google or GitHub) [default: None]     │
+│                                            [required]                                                                       │
+│    --help                                  Show this message and exit.                                                      │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+```
+
+## Logout
+
+```
+$ launch auth logout --help
+                                                                                                                               
+ Usage: launch auth logout [OPTIONS]                                                                                           
+                                                                                                                               
+ Logout from launchflow.                                                                                                       
+                                                                                                                               
+╭─ Options ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ --help          Show this message and exit.                                                                                 │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+```

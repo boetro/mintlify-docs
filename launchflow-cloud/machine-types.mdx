@@ -1,0 +1,86 @@
+---
+title: Machine Types
+---
+
+No matter what type of machine you use your billing rate will always be the same ($0.12 per CPU hour). The only difference is the amount of resources you have access to. The following table shows the different types of machines available on the cluster.
+
+<table style={{ display: "inline-table", width: "100%"}} >
+   <thead>
+      <tr>
+         <th>CPUs</th>
+         <th>RAM (GB)</th>
+         <th>Hourly Cost</th>
+         <th>Monthly Cost</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <td>2</td>
+         <td>7.5</td>
+         <td>\$0.24</td>
+         <td>\$175.2</td>
+      </tr>
+      <tr>
+         <td>4</td>
+         <td>15</td>
+         <td>\$0.48</td>
+         <td>\$350.4</td>
+      </tr>
+      <tr>
+         <td>8</td>
+         <td>30</td>
+         <td>\$0.96</td>
+         <td>\$700.8</td>
+      </tr>
+      <tr>
+         <td>16</td>
+         <td>60</td>
+         <td>\$1.92</td>
+         <td>\$1401.6</td>
+      </tr>
+   </tbody>
+</table>
+
+
+## Environment Machine Configuration
+
+You can configuration the machine information in an [environment](/launchflow-cloud/user-guides/environments) and all deployments launched in the environment will use this configuration.
+
+<Tabs>
+  <Tab className="tailwind styles" title="VS Code Extension">
+
+<div className="grid sm:grid-cols-2">
+  <div>
+  <ol>
+      <li>Navigate to the <code>Projects</code> tab</li>
+      <li>Select a project</li>
+      <li>Select an environment</li>
+      <li>Click <code>Edit Environment</code></li>
+      <li>Select your <code>Machine Type</code></li>
+      <li>Click <code>Save Environment Changes</code></li>
+   </ol>
+   </div>
+  <div>
+   <Frame className="tailwind styles sm:hidden">
+      <img style={{maxHeight: "500px", margin: 0}} alt="Environment Machine Configuration " src="/images/edit-environment.png"/>
+   </Frame>
+   </div>
+</div>
+  </Tab>
+  <Tab title="CLI">
+    ```
+      launch environments update --num-cpus=8 --name=dev
+      launch deploy --environment=dev
+    ```
+  </Tab>
+</Tabs>
+
+## Individual Deployment Configuration
+
+
+When you launch a deployment via the CLI; if no machine type is specific the default is 2 CPUs and 7.5 GB of RAM. For example, to launch a deployment with 8 CPUs you would run the following command from a buildflow application directory:
+
+```
+launch deploy --num-cpus=8
+```
+

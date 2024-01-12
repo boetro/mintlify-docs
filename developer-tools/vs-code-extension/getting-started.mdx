@@ -1,0 +1,176 @@
+---
+title: Getting Started
+---
+
+## Install the VS Code Extension
+
+<a
+  style={{
+    height: "fit-content",
+    display: "inline-block",
+    alignItems: "center",
+    gap: "8px",
+    paddingTop: "0",
+    paddingLeft: "16px",
+    paddingRight: "12px",
+    borderRadius: "15px",
+    fontSize: "1rem",
+    backgroundColor: "#3789ff",
+    color: "white",
+  }}
+  href="vscode:extension/LaunchFlow.launchflow"
+  onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#4994ff")}
+  onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#3789ff")}
+>
+  Install in VS Code
+</a>
+Once installed you can open the extension by clicking the LaunchFlow logo in the
+side bar, or by running the `LaunchFlow: Focus on Workspace View` VS Code command.
+<Frame className="tailwind styles sm:hidden">
+  <img
+    style={{ maxHeight: "500px", margin: 0 }}
+    alt="Open Extension"
+    src="/images/open-extension.png"
+  />
+</Frame>
+
+## Install BuildFlow
+
+Install the BuildFlow Python framework. **BuildFlow** is the open source Python framework that powers the LaunchFlow platform.
+
+```
+pip install buildflow
+```
+
+## Create your First Application
+
+The first screen of the extension houses all of the BuildFlow applications that are in your current workspace. You can always navigate back to this screen by clicking the `Home` icon in the top bar, or by click `Apps` in the hamburger menu.
+
+To create your first application select `Create from Template`. This will open a prompt for you to select a template, select `BuildFlow Service`, and select a directory to save your application in. This will add the application to your workspace and should appear as `buildflow-service` on the `Apps` page.
+
+<Tip>
+  The application name is determined by your
+  buildflow.yaml and
+  you can update it at any time.
+</Tip>
+
+<Frame className="tailwind styles sm:hidden">
+  <img
+    style={{ maxHeight: "500px", margin: 0 }}
+    alt="Service Template"
+    src="/images/buildflow-service-template.png"
+  />
+</Frame>
+
+## Run your Application Locally
+
+Once your application is created you can select it by clicking the name (`buildflow-service`) on the `Apps` page. This will attach the VS Code extension to your application and allow you to run useful commands on it. Simply click `Run Locally` to run your application. This will open the `Launches` page attached to your run.
+
+<Tip>
+  You can also run your application by clicking the LaunchFlow Icon in the top
+  right and selecting `Launch Run (local)` from any file in your application.
+</Tip>
+<Frame className="tailwind styles sm:hidden">
+  <img
+    style={{ maxHeight: "500px", margin: 0 }}
+    alt="Runtime"
+    src="/images/runtime.png"
+  />
+</Frame>
+
+## Debug your Application Locally
+
+From the `Launches` page you can perform many operations such as:
+
+<div className="grid sm:grid-cols-2">
+  <div>
+    <ul>
+      <li>Drain / Stop your Job</li>
+      <li>View Metrics</li>
+      <li>Visit the Swagger UI for OpenAPI docs</li>
+      <li>Reopen the Logs</li>
+    </ul>
+    Once you are done you can stop your job by clicking `Drain Launch` or `Stop Launch`
+    to stop your job.
+  </div>
+  <div>
+    <Frame className="tailwind styles sm:hidden">
+      <img
+        style={{ maxHeight: "500px", margin: 0 }}
+        alt="Running Local"
+        src="/images/running-local.png"
+      />
+    </Frame>
+  </div>
+</div>
+
+## Upgrade your Account
+
+In order you launch a remote deployment you will need to upgrade your account to our [standard tier](https://www.launchflow.com/pricing). You can do this by navigating to the account page by clicking the `User` icon in the top bar, or by clicking `Account` in the hamburger menu.
+
+Once on the account you can sign in with your Google or GitHub account, then click `Upgrade Account`. Once complete your account will be credited with $50 of free credit, and you can begin launching remote deployments!
+
+<Frame className="tailwind styles sm:hidden">
+  <img
+    style={{ maxHeight: "500px", margin: 0 }}
+    alt="Upgrade Account"
+    src="/images/upgrade-account.png"
+  />
+</Frame>
+
+## Deploy your Application Remotely
+
+Navigate back to the `Apps` page and select the app you created above. Then click `Launch Deployment`. This will prompt you to connect a project to you application. Click `Yes` then enter a name for your project. Projects are a way to group your remote deployments together and you can create as many as you want. We recommend having one project per application.
+
+{" "}
+
+<Tip>
+  You can also launch your application by clicking the LaunchFlow Icon in the
+  top right and selecting `Launch Deploiyment (remote)` from any file in your
+  application.
+</Tip>
+<Frame className="tailwind styles sm:hidden">
+  <img
+    style={{ maxHeight: "500px", margin: 0 }}
+    alt="Remote Deployment"
+    src="/images/full-launch.gif"
+  />
+</Frame>
+
+## Debug your Remote Application
+
+<div>
+    Once your deployment is launched it will open a similar UI to the local run. You can view the **status** of your deployment, **real-time metrics**, and **real-time logs**. You can also visit the URL that was assigned to your deployment to view your application from the `Services` tab.
+
+    Once you are done you can stop your job by clicking `Drain Launch` or `Stop Launch`. This will stop your job.
+
+</div>
+<div>
+    <Frame className="tailwind styles sm:hidden">
+        <img style={{maxHeight: "500px", margin: 0}} alt="Running Remotely" src="/images/launch-with-services.png"/>
+    </Frame>
+</div>
+
+## View Historical Deployments
+
+<div className="grid sm:grid-cols-2 space-x-2">
+    <div>
+      After your deployment is stopped you can view it at anytime by opening the `Launches` page by clicking the `Rocket` icon in the top bar or by clicking `Launches` in the hamburger menu. You can also view your deployments by clicking the `Services` icon in the top bar or by clicking `Services` in the hamburger menu.
+
+      From this view you can click the deployment ID and view the status and **historical logs** of your deployment.
+    </div>
+    <div>
+        <Frame className="tailwind styles sm:hidden">
+            <img style={{maxHeight: "500px", margin: 0}} alt="Launches Tab" src="/images/launches-tab.png"/>
+        </Frame>
+    </div>
+
+</div>
+
+## What's Next?
+
+- Learn about additional [BuildFlow features](https://buildflow.dev)
+- Learn about additional [LaunchFlow cloud features](/launchflow-cloud/)
+- Create and Deploy your Application across [multiple environments](/launchflow-cloud/user-guides/environments)
+- Push new versions of your application with [zero downtime](/launchflow-cloud/user-guides/update-a-deployment)
+- Set up a [fully automated CI/CD pipeline](/launchflow-cloud/user-guides/setup-a-release-pipeline)

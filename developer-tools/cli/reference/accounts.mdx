@@ -1,0 +1,37 @@
+---
+title: Accounts
+---
+
+## List
+
+```
+$ launch accounts list --help
+                                                                                                                               
+ Usage: launch accounts list [OPTIONS]                                                                                         
+                                                                                                                               
+ List all accounts you have access to.                                                                                         
+                                                                                                                               
+╭─ Options ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ --expand  -e        Show all projects and deployments in an account.                                                        │
+│ --active  -a        Only to include active deployments in expansion. NOTE: this only applies if you pass the --expand or -e │
+│                     flag                                                                                                    │
+│ --help              Show this message and exit.                                                                             │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+```
+
+## Upgrade
+
+```
+$ launch accounts upgrade --help
+                                                                                                                               
+ Usage: launch accounts upgrade [OPTIONS]                                                                                      
+                                                                                                                               
+ Upgrade your launchflow acount.                                                                                               
+                                                                                                                               
+╭─ Options ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ --account-id        TEXT  The name of the account to apply the operation on. If this is unset we will use the default       │
+│                           account set in the config. Should be of the format:`account_XXXXX`                                │
+│                           [default: None]                                                                                   │
+│ --help                    Show this message and exit.                                                                       │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+```
